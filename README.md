@@ -1,7 +1,6 @@
-# ShelterFeels
+# ShelterFeels 2.0
 
-ShelterFeels is a project involving Rapsberry Pi, trying to create an object that can help people get in touch and document their emotions.
-
+This Advanced version builds on the first version of ShelterFeels, which was created as part of a workshop at the Freie Universität Berlin and the Kunsthochschule Berlin-Weißensee. The goal of the project is to create an object that helps people understand their emotions better and document them in a playful way. As part of my bachelor thesis, I have created a webapp allowing a long term analysis of the data collected by the object.
 1. [ Description ](#Description)
     1. [ Hardware ](#Hardware)
     2. [ Components ](#Components)
