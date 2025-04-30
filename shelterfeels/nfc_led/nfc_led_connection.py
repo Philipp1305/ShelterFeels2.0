@@ -13,6 +13,11 @@ def read_nfc_and_change_led(*args):
     colors = load_state_file()[weekday]
     emotion = read_emotion_from_nfc()
     print(emotion)
+
+
+    #eintrag db Emotion + Wort
+
+
     colors.append(emotion.value)
     print(colors)
     fill_circle(day, colors)

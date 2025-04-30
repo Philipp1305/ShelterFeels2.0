@@ -8,6 +8,7 @@ from shelterfeels.voice_recognition_app.inference_remote import send_post
 from shelterfeels.voice_recognition_app.recognition.audio_utils import record_until_interrupt
 from shelterfeels.voice_recognition_app.config import records_folder
 
+
 from tkinter import Tk, ttk
 from time import sleep
 from multiprocessing import Process, Manager
