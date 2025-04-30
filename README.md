@@ -1,10 +1,11 @@
 # ShelterFeels 2.0
 
 This Advanced version builds on the first version of ShelterFeels, which was created as part of a workshop at the Freie Universität Berlin and the Kunsthochschule Berlin-Weißensee. The goal of the project is to create an object that helps people understand their emotions better and document them in a playful way. As part of my bachelor thesis, I have created a webapp allowing a long term analysis of the data collected by the object.
+
 1. [ Description ](#Description)
-    1. [ Hardware ](#Hardware)
-    2. [ Components ](#Components)
-    3. [ Workflow ](#Workflow)
+   1. [ Hardware ](#Hardware)
+   2. [ Components ](#Components)
+   3. [ Workflow ](#Workflow)
 2. [ Installation ](#Installation)
 3. [ Usage ](#Usage)
 4. [ Acknowledgements ](#Acknowledgements)
@@ -18,6 +19,7 @@ In emotriowheel you will find basic first attempts involving an Arduino.
 The shelterfeels directory contains the actual meat of project.
 
 ### Hardware
+
 - 2.8inch HDMI LCD (H) (SKU: 21316)
 - Raspberry Pi 4 Model B (4GB RAM)
 - PN532 NFC NXP RFID-Modul (supports I2C)
@@ -61,6 +63,9 @@ The LEDs are categorized by our 6 core emotion, each of which gets assigned an R
 
 The config in this directory mostly pertains to the LEDs and NFCs you're using. The NFC chips have unique IDs which need to be assigned an emotion. The LEDs can have different adresses or a variable amount, also specified in the config. The code assumes that all LEDs are chaned together.
 
+### Database
+
+### Webapp
 
 ### Workflow
 
@@ -70,7 +75,6 @@ Below, you will find a state chart of how it works.
 
 ![state chart of ShelterFeels](shelterfeels_state_chart.png)
 
-
 ## Installation
 
 Installation will be difficult, because the code is closely connected to the physical object we build. That said, if you're willing to overcome a lot of hardware problems, we advice you to read and understand the code thoroughly before doing anything with it.
@@ -79,13 +83,11 @@ You need **python3.10** and the requirements listed in requirements.txt (which i
 
 To run, simply execute run.py with python as sudo: `sudo python run.py`
 
-
 ## Usage
 
 As of right now, you can repurpose the code for your own means. By inserting dummy functions for the subprocesses in main_window you can at least the gui on any PC.
 
 The actual object, ShelterFeels, is used for learning to understand your own emotions better, by daily telling ot about your day and finding the best words to describe how you feel about it.
-
 
 ## Acknowledgements
 
