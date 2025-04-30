@@ -8,6 +8,12 @@ def read_nfc_and_change_led(*args):
     """
     Read nfc and adds new color to the circle
     """
+    if args:
+        word = args[0]
+        print(f"Received word: {word}")  # zur Kontrolle
+    else:
+        word = None
+
     weekday = str(datetime.today().weekday())
     day = daynum_to_day[weekday]
     colors = load_state_file()[weekday]
@@ -15,7 +21,7 @@ def read_nfc_and_change_led(*args):
     print(emotion)
 
 
-    #eintrag db Emotion + Wort
+    #eintrag db Emotion +
 
 
     colors.append(emotion.value)

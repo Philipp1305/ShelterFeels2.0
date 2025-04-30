@@ -162,7 +162,7 @@ class MainWindow(Tk):
                 print(word)
 
                 switch_label_text(self.label, word, self.subtext_label, "tag with an emotion token \nor touch to skip")
-                self.nfc_process = Process(target=read_nfc_and_change_led, daemon=True) # nfc reading here
+                self.nfc_process = Process(target=read_nfc_and_change_led, args=(word,), daemon=True) # nfc reading here
                 self.nfc_process.start()
                 self.after_idle(self.check_process)
 
