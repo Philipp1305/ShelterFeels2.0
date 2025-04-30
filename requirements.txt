@@ -1,0 +1,19 @@
+# somewhat incomplete. they'res some very specific libraries we had to use
+
+# GUI
+tk # is incompatible with python3.12. also needs extra installation on linux, try: sudo apt-get install python3-tk
+
+# VOICE APP
+openai-whisper
+sounddevice
+soundfile
+scipy
+transformers
+sentencepiece
+pytest
+setuptools-rust
+nltk
+fastapi
+uvicorn
+python-multipart
+# ffmpeg in your system!!! https://ffmpeg.org/download.html
