@@ -64,3 +64,12 @@ def insert_emotion(emotion, word):
         if conn is not None:
             # Close the connection
             conn.close()
+
+
+if __name__ == "__main__":
+    setup_to_db()
+    insert_emotion("happy", "joy")
+    insert_emotion("sad", "sorrow")
+    insert_emotion("angry", "rage")
+    insert_emotion("surprised", "shock")
+    insert_emotion("disgusted", "revulsion")
