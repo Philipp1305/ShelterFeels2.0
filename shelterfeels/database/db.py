@@ -65,7 +65,6 @@ def insert_emotion(emotion, word):
             # Close the connection
             conn.close()
 
-
 if __name__ == "__main__":
     setup_to_db()
     insert_emotion("happy", "joy")
