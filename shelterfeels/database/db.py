@@ -42,6 +42,7 @@ def setup_to_db():
 
 
 def insert_emotion(emotion, word):
+    print("DB entry", emotion, word)
     try:
         conn = psycopg2.connect(
             host=config.hostname,
@@ -51,6 +52,7 @@ def insert_emotion(emotion, word):
             port=config.port,
         )
         cur = conn.cursor()
+
         insert_query = """ INSERT INTO shelter_feels (emotion, word) VALUES (%s, %s) """
         cur.execute(insert_query, (emotion, word))
         conn.commit()
