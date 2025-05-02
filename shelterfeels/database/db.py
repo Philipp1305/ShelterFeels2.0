@@ -1,5 +1,5 @@
 import psycopg2
-import config
+from shelterfeels.database import config
 
 conn = None
 cur = None

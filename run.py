@@ -3,6 +3,7 @@ from threading import Thread
 
 from shelterfeels.gui import start_window
 from shelterfeels.nfc_led.neo_pixel import load_state, turn_off, upload_day_state
+from shelterfeels.database import db
 
 
 def run():
@@ -10,6 +11,7 @@ def run():
 while True:
     weekday = str(datetime.today().weekday())
     upload_day_state(weekday, [])
+    db.setup_to_db()
     Thread(target=load_state()).start()
     start_window()
     turn_off()
