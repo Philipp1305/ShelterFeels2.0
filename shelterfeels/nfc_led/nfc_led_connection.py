@@ -1,11 +1,17 @@
 from shelterfeels.nfc_led.nfc import read_emotion_from_nfc
-from shelterfeels.nfc_led.neo_pixel import fill_circle, turn_off, upload_day_state, load_state_file
+from shelterfeels.nfc_led.neo_pixel import (
+    fill_circle,
+    turn_off,
+    upload_day_state,
+    load_state_file,
+)
 from shelterfeels.nfc_led.config import daynum_to_day
 from datetime import datetime
+from shelterfeels.database.db import insert_emotion
 
 
 def read_nfc_and_change_led(*args):
-    """
+    """s
     Read nfc and adds new color to the circle
     """
     if args:
@@ -19,11 +25,7 @@ def read_nfc_and_change_led(*args):
     colors = load_state_file()[weekday]
     emotion = read_emotion_from_nfc()
     print(emotion)
-
-
-    #eintrag db Emotion +
-
-
+    insert_emotion(emotion, word)
     colors.append(emotion.value)
     print(colors)
     fill_circle(day, colors)
