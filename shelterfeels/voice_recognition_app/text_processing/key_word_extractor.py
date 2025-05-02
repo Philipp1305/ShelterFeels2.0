@@ -11,6 +11,7 @@ nltk.download("punkt")
 nltk.download("punkt_tab")
 nltk.download("stopwords")
 nltk.download("averaged_perceptron_tagger")
+nltk.download("averaged_perceptron_tagger_eng")
 
 model = T5ForConditionalGeneration.from_pretrained("Voicelab/vlt5-base-keywords")
 model = model.to(device)
