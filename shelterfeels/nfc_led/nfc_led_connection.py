@@ -34,6 +34,7 @@ def read_nfc_and_change_led(*args):
 
 
 if __name__ == "__main__":
+    read_nfc_and_change_led("testemotion")
     for i in range(5):
         read_nfc_and_change_led()
     turn_off()
