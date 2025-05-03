@@ -1,35 +1,24 @@
 body {
     background-color: rgb(0, 0, 0);
-  }
+}
 
 h1 {
     color: rgb(255, 255, 255);
     text-align: center;
     font-size: 50px;
     margin-top: 20px;
-  }
+}
 
 .text-box {
-  width: 100%;
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  color: white;
-  font-size: 32px;
-  font-family: EB Garamond;
-  font-weight: 400;
-  word-wrap: break-word;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: black;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 20px; /* Position the text-box 20px from the top */
+    left: 20px; /* Position the text-box 20px from the left */
+    text-align: left;
+    font-size: 1.5rem;
+    color: white;
+    font-family: "EB Garamond", serif;
+    font-weight: 400;
+    word-wrap: break-word;
 }
 
 /* Allgemeiner Hintergrund */
@@ -41,13 +30,31 @@ h1 {
     overflow: hidden;
 }
 
+/* Center the emotion-container in the middle of the page */
+.emotion-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; /* Adjust width to fit the constellation */
+    height: 600px; /* Adjust height to fit the constellation */
+    position: relative;
+}
+
+/* Position each emotion-circle relative to the container */
+.emotion-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 /* Emotion Circle Styling */
 .emotion-circle {
-    width: 154.98px;
-    height: 154.98px;
-    padding: 7.04px;
-    position: absolute;
-    border-radius: 704.43px;
+    width: 155px; /* Adjusted for consistency */
+    height: 155px; /* Adjusted for consistency */
+    padding: 7px;
+    border-radius: 50%; /* Ensures the circle shape */
     box-shadow: -3px 3px 9px rgba(42, 139, 213, 0.10);
     display: flex;
     justify-content: center;
@@ -56,14 +63,14 @@ h1 {
 
 /* Emotion Label Styling */
 .emotion-label {
-    width: 140.89px;
+    width: 140px;
     text-align: center;
     color: white;
-    font-size: 8.45px;
+    font-size: 12px; /* Increased for better readability */
     font-family: "EB Garamond", serif;
     font-weight: 700;
     word-wrap: break-word;
     background: #343434;
-    border-radius: 14.09px;
-    padding: 5.64px 11.27px;
+    border-radius: 14px;
+    padding: 6px 12px;
 }
