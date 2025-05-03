@@ -1,6 +1,18 @@
-# ShelterFeels 2.0
+# ShelterFeels2.0
 
 This Advanced version builds on the first version of ShelterFeels, which was created as part of a workshop at the Freie Universität Berlin and the Kunsthochschule Berlin-Weißensee. The goal of the project is to create an object that helps people understand their emotions better and document them in a playful way. As part of my bachelor thesis, I have created a webapp allowing a long term analysis of the data collected by the object.
+
+Files edited due Bachelorthesis:
+shelterfeels\gui\main_window.py
+shelterfeels\nfc_led\config.py
+shelterfeels\nfc_led\nfc_led_connection.py
+shelterfeels\voice_recognition_app\text_processing\key_word_extractor.py
+
+Files added due Bachelorthesis:
+shelterfeels\database
+
+
+# ShelterFeels
 
 1. [ Description ](#Description)
    1. [ Hardware ](#Hardware)
