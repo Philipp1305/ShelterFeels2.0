@@ -66,3 +66,34 @@ def insert_emotion(emotion, word):
         if conn is not None:
             # Close the connection
             conn.close()
+
+
+def get_data_server():
+    try:
+        conn = psycopg2.connect(
+            host="172.26.236.77",
+            database=config.database,
+            user=config.username,
+            password=config.password,
+            port=config.port,
+        )
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM shelter_feels")
+        data = cur.fetchall()
+
+        cur.close()
+        conn.close()
+
+        return data  # Return raw data
+    except Exception as e:
+        print("Unable to connect to the database.")
+        print(f"Error: {e}")
+        return None
+    finally:
+        if cur is not None:
+            # Close the cursor
+            cur.close()
+        if conn is not None:
+            # Close the connection
+            conn.close()

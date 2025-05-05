@@ -2,16 +2,13 @@ import uvicorn as uvicorn
 from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-
-
+from shelterfeels.database import db
 from shelterfeels.voice_recognition_app.config import records_folder, server_port
 from shelterfeels.voice_recognition_app.inference_local import extract_key_words_text
 from shelterfeels.voice_recognition_app.utils import save_upload_file
 
 app = FastAPI()
-
 app.mount("/static", StaticFiles(directory="static"), name="static")
-
 templates = Jinja2Templates(directory="templates")
 
 
@@ -34,6 +31,14 @@ async def emotion_page(request: Request, emotion: str):
     return templates.TemplateResponse(
         "emotion.html", {"request": request, "emotion": emotion, "style": style}
     )
+
+
+@app.get("/data")
+async def get_data():
+    data = db.get_data_server()
+    if data is None:
+        return {"error": "No data found"}
+    return {"data": data}
 
 
 @app.post("/extract_key_words")

@@ -16,4 +16,5 @@ nltk
 fastapi
 uvicorn
 python-multipart
+psycopg2
 # ffmpeg in your system!!! https://ffmpeg.org/download.html
