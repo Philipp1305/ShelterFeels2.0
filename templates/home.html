@@ -1,114 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emotion Dashboard</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<style>
-   
-    .emotion-container {
-        position: relative;
-        width: 800px;
-        height: 600px;
-    }
-    .emotion-circle {
-        position: absolute;
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-    }
-</style>
-<body>
-    <div class="emotion-container">
-        <!-- Sad Emotion -->
-        <div class="emotion-circle" data-emotion="Sad" style="left: 100px; top: 300px; background: radial-gradient(ellipse 83.73% 83.73% at 69.09% 34.55%, #6CDFFF 0%, #0011FF 100%), linear-gradient(209deg, #48E1FF 0%, rgba(0, 6.33, 126.52, 0.75) 100%);">
-            <div class="emotion-label">Sad</div>
-        </div>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
 
-        <!-- Peaceful Emotion -->
-        <div class="emotion-circle" data-emotion="Peaceful" style="left: 100px; top: 100px; background: radial-gradient(ellipse 83.73% 83.73% at 69.09% 34.55%, #FF00BF 0%, #4B008D 100%), linear-gradient(209deg, #FF48DE 0%, rgba(92.78, 0, 126.52, 0.75) 100%);">
-            <div class="emotion-label">Peaceful</div>
-        </div>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header-text">Your overall emotional state:</div>
+      </div>
 
-        <!-- Powerful Emotion -->
-        <div class="emotion-circle" data-emotion="Powerful" style="left: 300px; top: 400px; background: radial-gradient(ellipse 83.73% 83.73% at 69.09% 34.55%, #03FF10 0%, #006A05 100%), linear-gradient(209deg, #00FF3C 0%, rgba(18.47, 110.83, 0, 0.75) 100%);">
-            <div class="emotion-label">Powerful</div>
-        </div>
+      <div class="circle sad">
+        <a href="/emotion/sad">
+          <div class="circle-content">
+            <div class="circle-text">Sad</div>
+          </div>
+        </a>
+      </div>
 
-        <!-- Mad Emotion -->
-        <div class="emotion-circle" data-emotion="Mad" style="left: 300px; top: 50px; background: radial-gradient(ellipse 80.20% 80.20% at 67.73% 38.18%, #FF6D5A 0%, #FF0000 100%), linear-gradient(208deg, #FF0000 0%, #FF0000 100%);">
-            <div class="emotion-label">Mad</div>
-        </div>
+      <div class="circle peaceful">
+        <a href="/emotion/peaceful">
+          <div class="circle-content">
+            <div class="circle-text">Peaceful</div>
+          </div>
+        </a>
+      </div>
 
-        <!-- Scared Emotion -->
-        <div class="emotion-circle" data-emotion="Scared" style="left: 500px; top: 100px; background: radial-gradient(ellipse 80.20% 80.20% at 67.73% 38.18%, #FFB956 0%, rgba(255, 131.75, 0, 0.49) 100%), linear-gradient(208deg, #FF7700 0%, #FF0000 100%);">
-            <div class="emotion-label">Scared</div>
-        </div>
+      <div class="circle mad">
+        <a href="/emotion/mad">
+          <div class="circle-content">
+            <div class="circle-text">Mad</div>
+          </div>
+        </a>
+      </div>
 
-        <!-- Joyful Emotion -->
-        <div class="emotion-circle" data-emotion="Joyful" style="left: 500px; top: 300px; background: radial-gradient(ellipse 39.55% 39.55% at 43.64% 46.59%, rgba(255, 248.13, 117.69, 0.49) 0%, #FFB956 100%), linear-gradient(208deg, #FFFB00 0%, #FFA600 100%);">
-            <div class="emotion-label">Joyful</div>
+      <div class="circle powerful">
+        <a href="/emotion/powerful">
+          <div class="circle-content">
+            <div class="circle-text">Powerful</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="circle scared">
+        <a href="/emotion/scared">
+          <div class="circle-content">
+            <div class="circle-text">Scared</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="circle joyful">
+        <a href="/emotion/joyful">
+          <div class="circle-content">
+            <div class="circle-text">Joyful</div>
+          </div>
+        </a>
+      </div>
+
+      <div
+        style="
+          width: 346px;
+          padding: 10px;
+          left: 15px;
+          top: 85%;
+          position: absolute;
+          border-radius: 20px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          display: inline-flex;
+        "
+      >
+        <div
+          style="
+            width: 326px;
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            font-size: 32px;
+            font-family: EB Garamond;
+            font-weight: 400;
+            word-wrap: break-word;
+          "
+        >
+          Learn about feelings:
         </div>
+      </div>
+      <div
+        style="
+          width: 251px;
+          height: 78px;
+          left: 62.5px;
+          top: 90%;
+          position: absolute;
+          background: linear-gradient(
+            47deg,
+            #ff2921 0%,
+            #ff7b1e 20%,
+            #ffdc49 38%,
+            #02d20d 58%,
+            #285dff 77%,
+            #bb00ad 100%
+          );
+          border-radius: 20px;
+        "
+      ></div>
     </div>
-
-    <!-- Text Box -->
-    <div class="text-box">
-        Your overall emotional state:
-    </div>
-   
-    <div class="data-container">
-        <ul id="data-list">
-
-        </ul>
-    </div>
-
-
-
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            const dataList = document.getElementById("data-list");
-
-            try {
-                // Fetch data from the /data endpoint
-                const response = await fetch("/data");
-                const result = await response.json();
-
-                // Check if there is an error
-                if (result.error) {
-                    dataList.innerHTML = `<li>${result.error}</li>`;
-                    return;
-                }
-
-                // Populate the data list
-                result.data.forEach(item => {
-                    const listItem = document.createElement("li");
-                    listItem.textContent = JSON.stringify(item); // Adjust formatting as needed
-                    dataList.appendChild(listItem);
-                });
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                dataList.innerHTML = `<li>Error fetching data</li>`;
-            }
-
-        
-            const circles = document.querySelectorAll(".emotion-circle");
-        
-            circles.forEach(circle => {
-                circle.addEventListener("click", () => {
-                    const emotion = circle.getAttribute("data-emotion");
-                    window.location.href = `/emotion/${emotion.toLowerCase()}`;
-                });
-            });
-        });
-    </script>
-
-</body>
+  </body>
 </html>
