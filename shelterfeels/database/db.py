@@ -97,3 +97,29 @@ def get_data_server():
         if conn is not None:
             # Close the connection
             conn.close()
+
+def get_joyful_data():
+    try:
+        conn = psycopg2.connect(
+            host=config.hostname,
+            database=config.database,
+            user=config.username,
+            password=config.password,
+            port=config.port,
+        )
+        cur = conn.cursor()
+
+        # Query to fetch "Joyful" subcategories
+        cur.execute(
+            "SELECT word FROM shelter_feels WHERE emotion IN ('excited', 'delightful', 'stimulated')"
+        )
+        data = cur.fetchall()
+
+        cur.close()
+        conn.close()
+
+        return [row[0] for row in data]  # Return a list of words
+    except Exception as e:
+        print("Unable to connect to the database.")
+        print(f"Error: {e}")
+        return []

@@ -22,7 +22,7 @@ async def name(request: Request):
 async def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
-
+"""
 @app.get("/emotion/{emotion}", response_class=HTMLResponse)
 async def emotion_page(emotion: str, request: Request):
     # Map emotion to corresponding HTML file
@@ -40,7 +40,13 @@ async def emotion_page(emotion: str, request: Request):
             template_name, {"request": request, "emotion": emotion}
         )
     return {"error": "Emotion not found"}
-
+"""
+@app.get("/emotion/joyful", response_class=HTMLResponse)
+async def joyful_page(request: Request):
+    joyful_words = db.get_joyful_data()  # Fetch words for "Joyful" subcategories
+    return templates.TemplateResponse(
+        "joyful.html", {"request": request, "joyful_words": joyful_words}
+    )
 
 @app.get("/data")
 async def get_data():
