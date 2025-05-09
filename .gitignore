@@ -1,0 +1,14 @@
+.venv
+*__pycache__*
+.vscode
+recordings/
+*.idea*
+*.pytest_cache*
+
+shelterfeels_state_chart.png
+
+# Ignore __pycache__ in shelterfeels/database
+shelterfeels/database/__pycache__/
+
+# Ignore recordings in shelterfeels/voice_recognition_app
+shelterfeels/voice_recognition_app/recordings/
