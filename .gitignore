@@ -1,0 +1,9 @@
+.venv
+*/__pycache__/*
+.vscode
+recordings/
+*.idea*
+*.pytest_cache*
+
+shelterfeels_state_chart.png
+shelterfeels/database/__pycache__
