@@ -8,13 +8,16 @@ from shelterfeels.voice_recognition_app.config import records_folder, server_por
 from shelterfeels.voice_recognition_app.inference_local import extract_key_words_text
 from shelterfeels.voice_recognition_app.utils import save_upload_file
 
+
 app = FastAPI()
+db.cache_all_data()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/")
 async def name(request: Request):
+    db.cache_all_data()
     return templates.TemplateResponse("home.html", {"request": request})
 
 
@@ -22,31 +25,92 @@ async def name(request: Request):
 async def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
-"""
+
 @app.get("/emotion/{emotion}", response_class=HTMLResponse)
-async def emotion_page(emotion: str, request: Request):
-    # Map emotion to corresponding HTML file
-    emotion_templates = {
-        "sad": "sad.html",
-        "peaceful": "peaceful.html",
-        "powerful": "powerful.html",
-        "mad": "mad.html",
-        "scared": "scared.html",
-        "joyful": "joyful.html",
+async def emotion_page(request: Request, emotion: str):
+    # Mapping von Hauptemotion zu Sub-Emotions und Template
+    emotion_map = {
+        "joyful": {
+            "sub_emotions": ("excited", "delightful", "stimulating"),
+            "template": "joyful.html",
+        },
+        "sad": {
+            "sub_emotions": ("depressed", "sleepy", "bored"),
+            "template": "sad.html",
+        },
+        "scared": {
+            "sub_emotions": ("anxious", "helpless", "insecure"),
+            "template": "scared.html",
+        },
+        "peaceful": {
+            "sub_emotions": ("intimate", "loving", "thankful"),
+            "template": "peaceful.html",
+        },
+        "powerful": {
+            "sub_emotions": ("confident", "faithful", "appreciated"),
+            "template": "powerful.html",
+        },
+        "mad": {
+            "sub_emotions": ("furious", "hurt", "hateful"),
+            "template": "mad.html",
+        },
     }
-    template_name = emotion_templates.get(emotion.lower())
-    if template_name:
-        return templates.TemplateResponse(
-            template_name, {"request": request, "emotion": emotion}
+
+    if emotion not in emotion_map:
+        return HTMLResponse(content="Emotion not found", status_code=404)
+
+    sub_emotions = emotion_map[emotion]["sub_emotions"]
+    template_name = emotion_map[emotion]["template"]
+
+    # Load cache from JSON file
+    cached_data = db.load_cache()  # List of [emotion, word]
+    # Filter for relevant emotions
+    filtered = [item for item in cached_data if item[0] in sub_emotions]
+
+    # Define positions for the circles
+    positions = [
+        {"top": "50%", "left": "75%"},
+        {"top": "32%", "left": "50%"},
+        {"top": "68%", "left": "50%"},
+        {"top": "50%", "left": "25%"},
+        {"top": "62%", "left": "32%"},
+        {"top": "62%", "left": "68%"},
+        {"top": "38%", "left": "32%"},
+        {"top": "38%", "left": "68%"},
+        {"top": "59%", "left": "89%"},
+        {"top": "41%", "left": "89%"},
+        {"top": "59%", "left": "11%"},
+        {"top": "41%", "left": "11%"},
+        {"top": "23%", "left": "61%"},
+        {"top": "23%", "left": "39%"},
+        {"top": "77%", "left": "61%"},
+        {"top": "77%", "left": "39%"},
+        {"top": "72%", "left": "21%"},
+        {"top": "72%", "left": "79%"},
+        {"top": "28%", "left": "21%"},
+        {"top": "28%", "left": "79%"},
+    ]
+
+    # Combine filtered data with positions, fill with "---" if not enough data
+    circles = []
+    for i, pos in enumerate(positions):
+        if i < len(filtered):
+            emotion_val, word = filtered[i]
+        else:
+            emotion_val, word = "---", "---"
+        circles.append(
+            {
+                "emotion": emotion_val,
+                "word": word,
+                "top": pos["top"],
+                "left": pos["left"],
+            }
         )
-    return {"error": "Emotion not found"}
-"""
-@app.get("/emotion/joyful", response_class=HTMLResponse)
-async def joyful_page(request: Request):
-    joyful_words = db.get_joyful_data()  # Fetch words for "Joyful" subcategories
+
     return templates.TemplateResponse(
-        "joyful.html", {"request": request, "joyful_words": joyful_words}
+        template_name, {"request": request, "circles": circles}
     )
+
 
 @app.get("/data")
 async def get_data():

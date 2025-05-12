@@ -1,8 +1,13 @@
 import psycopg2
 from shelterfeels.database import config
+import json
+import os
+
 
 conn = None
 cur = None
+
+CACHE_FILE = "shelter_feels_cache.json"
 
 
 # Connect to the PostgreSQL database
@@ -79,7 +84,7 @@ def get_data_server():
         )
         cur = conn.cursor()
 
-        cur.execute("SELECT * FROM shelter_feels")
+        cur.execute("SELECT EMOTION,WORD FROM shelter_feels")
         data = cur.fetchall()
 
         cur.close()
@@ -98,28 +103,25 @@ def get_data_server():
             # Close the connection
             conn.close()
 
-def get_joyful_data():
-    try:
-        conn = psycopg2.connect(
-            host=config.hostname,
-            database=config.database,
-            user=config.username,
-            password=config.password,
-            port=config.port,
-        )
-        cur = conn.cursor()
 
-        # Query to fetch "Joyful" subcategories
-        cur.execute(
-            "SELECT word FROM shelter_feels WHERE emotion IN ('excited', 'delightful', 'stimulated')"
-        )
-        data = cur.fetchall()
+def cache_all_data():
+    data = get_data_server()
+    if data is not None:
+        with open(CACHE_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False)
+        print("DB cached.")
+    else:
+        print("No data to cache.")
 
-        cur.close()
-        conn.close()
 
-        return [row[0] for row in data]  # Return a list of words
-    except Exception as e:
-        print("Unable to connect to the database.")
-        print(f"Error: {e}")
-        return []
+def load_cache():
+    if os.path.exists(CACHE_FILE):
+        with open(CACHE_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data
+    return []
+
+
+# if __name__ == "__main__":
+#    cache_all_data()
+#    load_cache()

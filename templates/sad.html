@@ -22,85 +22,17 @@
         </a>
       </div>
 
-      <div class="circlesmall sad" style="top: 50%; left: 75%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 32%; left: 50%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 68%; left: 50%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 50%; left: 25%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 62%; left: 32%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 62%; left: 68%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 38%; left: 32%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 38%; left: 68%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 59%; left: 89%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 41%; left: 89%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 59%; left: 11%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 41%; left: 11%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 23%; left: 61%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 23%; left: 39%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 77%; left: 61%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 77%; left: 39%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 72%; left: 21%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 72%; left: 79%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 28%; left: 21%">
-        <div class="circlesmall-text">---</div>
-      </div>
-
-      <div class="circlesmall sad" style="top: 28%; left: 79%">
-        <div class="circlesmall-text">---</div>
-      </div>
+      {% for item in circles %}
+        {% if item.word and item.word != "---" %}
+          <div class="circlesmall sad"
+               style="top: {{ item.top }}; left: {{ item.left }};">
+            <div class="circlesmall-text">
+              <strong>{{ item.emotion }}</strong><br>
+              {{ item.word }}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
   </body>
 </html>

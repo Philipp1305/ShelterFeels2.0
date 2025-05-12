@@ -12,3 +12,4 @@ shelterfeels/database/__pycache__/
 
 # Ignore recordings in shelterfeels/voice_recognition_app
 shelterfeels/voice_recognition_app/recordings/
+shelter_feels_cache.json
