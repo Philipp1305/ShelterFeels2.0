@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emotion Dashboard</title>
     <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
   <body>
@@ -61,12 +62,23 @@
         </a>
       </div>
 
+      <canvas
+        id="emotionChart"
+        width="400"
+        height="400"
+        left="50%"
+        top="50%"
+        transform="translate(-50%, -50%)"
+        class="chart-center"
+      ></canvas>
+
       <div
         style="
           width: 346px;
           padding: 10px;
-          left: 15px;
+          left: 50%;
           top: 85%;
+          transform: translate(-50%, -50%);
           position: absolute;
           border-radius: 20px;
           justify-content: center;
@@ -84,7 +96,7 @@
             flex-direction: column;
             color: white;
             font-size: 32px;
-            font-family: EB Garamond;
+            font-family: Roboto, sans-serif;
             font-weight: 400;
             word-wrap: break-word;
           "
@@ -92,25 +104,89 @@
           Learn about feelings:
         </div>
       </div>
-      <div
-        style="
-          width: 251px;
-          height: 78px;
-          left: 62.5px;
-          top: 90%;
-          position: absolute;
-          background: linear-gradient(
-            47deg,
-            #ff2921 0%,
-            #ff7b1e 20%,
-            #ffdc49 38%,
-            #02d20d 58%,
-            #285dff 77%,
-            #bb00ad 100%
-          );
-          border-radius: 20px;
-        "
-      ></div>
+      <a href="emolearn">
+        <div
+          style="
+            width: 251px;
+            height: 78px;
+            left: 50%;
+            top: 92%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            background: linear-gradient(
+              47deg,
+              #ff2921 0%,
+              #ff7b1e 20%,
+              #ffdc49 38%,
+              #02d20d 58%,
+              #285dff 77%,
+              #bb00ad 100%
+            );
+            border-radius: 20px;
+          "
+        ></div>
+      </a>
     </div>
+    <script>
+      fetch("/emotion-data")
+        .then((res) => res.json())
+        .then((data) => {
+          const ctx = document.getElementById("emotionChart").getContext("2d");
+          new Chart(ctx, {
+            type: "polarArea",
+            data: {
+              labels: [
+                "Mad",
+                "Scared",
+                "Joyful",
+                "Powerful",
+                "Peaceful",
+                "Sad",
+              ],
+              datasets: [
+                {
+                  data: [
+                    data["Mad"],
+                    data["Scared"],
+                    data["Joyful"],
+                    data["Powerful"],
+                    data["Peaceful"],
+                    data["Sad"],
+                  ],
+                  backgroundColor: [
+                    "#ff0000", // Mad
+                    "#ff7700", // Scared
+                    "#ffb956", // Sad
+                    "#006a05", // Peaceful
+                    "#0011ff", // Powerful
+                    "#4b008d", // Joyful
+                  ],
+                  borderWidth: 0.5,
+                },
+              ],
+            },
+            options: {
+              scales: {
+                r: {
+                  startAngle: -30,
+                  max: 40,
+                  ticks: {
+                    display: false,
+                  },
+                  grid: {
+                    display: false,
+                  },
+                },
+              },
+              responsive: true,
+              plugins: {
+                legend: {
+                  display: false,
+                },
+              },
+            },
+          });
+        });
+    </script>
   </body>
 </html>

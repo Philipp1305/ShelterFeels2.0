@@ -14,6 +14,12 @@
   </head>
   <body>
     <div class="container">
+      <div class="buttonback">
+        <a href="/">
+          <div class="buttontext">Back</div>
+        </a>
+      </div>
+
       <div class="circle powerful">
         <a href="/">
           <div class="circle-content">
@@ -23,15 +29,18 @@
       </div>
 
       {% for item in circles %}
-        {% if item.word and item.word != "---" %}
-          <div class="circlesmall powerful"
-               style="top: {{ item.top }}; left: {{ item.left }};">
-            <div class="circlesmall-text">
-              <strong>{{ item.emotion }}</strong><br>
-              {{ item.word }}
-            </div>
-          </div>
-        {% endif %}
+      <div
+        class="circlesmall powerful{% if not item.word or item.word == '---' %} empty{% endif %}"
+        style="top: {{ item.top }}; left: {{ item.left }};"
+      >
+        <div class="circlesmall-text">
+          <strong
+            >{{ item.emotion if item.word and item.word != '---' else '---'
+            }}</strong
+          ><br />
+          {{ item.word if item.word and item.word != '---' else '---' }}
+        </div>
+      </div>
       {% endfor %}
     </div>
   </body>

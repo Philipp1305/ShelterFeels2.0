@@ -26,6 +26,11 @@ async def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
 
+@app.get("/emolearn", response_class=HTMLResponse)
+async def emolearn_page(request: Request):
+    return templates.TemplateResponse("emolearn.html", {"request": request})
+
+
 @app.get("/emotion/{emotion}", response_class=HTMLResponse)
 async def emotion_page(request: Request, emotion: str):
     # Mapping von Hauptemotion zu Sub-Emotions und Template
@@ -128,6 +133,26 @@ def extract_key_words_endpoint(file: UploadFile = File(...)):
     keywords = extract_key_words_text(audiofile)
     print("Post processed keywords:", keywords)
     return keywords
+
+
+@app.get("/emotion-data")
+async def emotion_data():
+    cached_data = db.load_cache()  # List of [emotion, word]
+
+    emotion_groups = {
+        "Mad": ["furious", "hurt", "hateful"],
+        "Joyful": ["excited", "delightful", "stimulating"],
+        "Scared": ["anxious", "helpless", "insecure"],
+        "Powerful": ["confident", "faithful", "appreciated"],
+        "Peaceful": ["intimate", "loving", "thankful"],
+        "Sad": ["depressed", "sleepy", "bored"],
+    }
+
+    counts = {}
+    for group, sub_emotions in emotion_groups.items():
+        counts[group] = sum(1 for entry in cached_data if entry[0] in sub_emotions)
+
+    return counts
 
 
 @app.get("/liveness_check")
