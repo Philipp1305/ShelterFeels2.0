@@ -9,12 +9,52 @@
   </head>
 
   <body>
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar" class="sidebar-hidden">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/emotion/joyful">Joyful</a></li>
+        <li><a href="/emotion/sad">Sad</a></li>
+        <li><a href="/emotion/mad">Mad</a></li>
+        <li><a href="/emotion/powerful">Powerful</a></li>
+        <li><a href="/emotion/scared">Scared</a></li>
+        <li><a href="/emotion/peaceful">Peaceful</a></li>
+        <li><a href="/emolearn">Learn</a></li>
+      </ul>
+    </nav>
     <div class="container">
+      <button
+        class="js-toggle-fullscreen-btn toggle-fullscreen-btn"
+        aria-label="Enter fullscreen mode"
+        hidden
+      >
+        <svg
+          class="toggle-fullscreen-svg"
+          width="28"
+          height="28"
+          viewBox="-2 -2 28 28"
+        >
+          <g class="icon-fullscreen-enter">
+            <path d="M 2 9 v -7 h 7" />
+            <path d="M 22 9 v -7 h -7" />
+            <path d="M 22 15 v 7 h -7" />
+            <path d="M 2 15 v 7 h 7" />
+          </g>
+
+          <g class="icon-fullscreen-leave">
+            <path d="M 24 17 h -7 v 7" />
+            <path d="M 0 17 h 7 v 7" />
+            <path d="M 0 7 h 7 v -7" />
+            <path d="M 24 7 h -7 v -7" />
+          </g>
+        </svg>
+      </button>
       <div class="header">
         <div class="header-text">Your overall emotional state:</div>
       </div>
 
       <div class="circle peaceful">
+        <div class="anim-circle peaceful"></div>
         <a href="/emotion/peaceful">
           <div class="circle-content">
             <div class="circle-text">Peaceful</div>
@@ -23,6 +63,7 @@
       </div>
 
       <div class="circle sad">
+        <div class="anim-circle sad"></div>
         <a href="/emotion/sad">
           <div class="circle-content">
             <div class="circle-text">Sad</div>
@@ -31,6 +72,7 @@
       </div>
 
       <div class="circle mad">
+        <div class="anim-circle mad"></div>
         <a href="/emotion/mad">
           <div class="circle-content">
             <div class="circle-text">Mad</div>
@@ -39,6 +81,7 @@
       </div>
 
       <div class="circle powerful">
+        <div class="anim-circle powerful"></div>
         <a href="/emotion/powerful">
           <div class="circle-content">
             <div class="circle-text">Powerful</div>
@@ -47,6 +90,7 @@
       </div>
 
       <div class="circle scared">
+        <div class="anim-circle scared"></div>
         <a href="/emotion/scared">
           <div class="circle-content">
             <div class="circle-text">Scared</div>
@@ -55,6 +99,7 @@
       </div>
 
       <div class="circle joyful">
+        <div class="anim-circle joyful"></div>
         <a href="/emotion/joyful">
           <div class="circle-content">
             <div class="circle-text">Joyful</div>
@@ -62,71 +107,118 @@
         </a>
       </div>
 
-      <canvas
-        id="emotionChart"
-        width="400"
-        height="400"
-        left="50%"
-        top="50%"
-        transform="translate(-50%, -50%)"
-        class="chart-center"
-      ></canvas>
-
       <div
         style="
-          width: 346px;
-          padding: 10px;
-          left: 50%;
-          top: 85%;
-          transform: translate(-50%, -50%);
           position: absolute;
+          left: 50%;
+          top: 46.5%;
+          transform: translate(-50%, -50%);
+        "
+      >
+        <div
+          class="chart-container"
+          style="position: relative; height: 30vh; width: 60vw"
+        >
+          <canvas
+            id="emotionChart"
+            left="50%"
+            top="50%"
+            transform="translate(-50%, -50%)"
+            class="chart-center"
+            style="width: 200px !important; height: 200px !important"
+          ></canvas>
+        </div>
+      </div>
+
+      <!-- Fullscreen Toggle Button -->
+      <a href="/emolearn"
+      <div
+        style="
+          position: absolute;
+          left: 50%;
+          top: 92%;
+          transform: translate(-50%, -50%);
+          width: 346px;
+          height: 78px;
+          padding: 10px;
+          background: linear-gradient(
+            47deg,
+            #ff2921 0%,
+            #ff7b1e 20%,
+            #ffdc49 38%,
+            #02d20d 58%,
+            #285dff 77%,
+            #bb00ad 100%
+          );
+          overflow: hidden;
           border-radius: 20px;
-          justify-content: center;
-          align-items: center;
+          justify-content: flex-start;
+          align-items: flex-start;
           gap: 10px;
           display: inline-flex;
         "
       >
         <div
           style="
-            width: 326px;
-            text-align: center;
+            width: 346px;
+            padding: 10px;
+            border-radius: 20px;
             justify-content: center;
+            align-items: center;
+            gap: 10px;
             display: flex;
-            flex-direction: column;
-            color: white;
-            font-size: 32px;
-            font-family: Roboto, sans-serif;
-            font-weight: 400;
-            word-wrap: break-word;
           "
         >
-          Learn about feelings:
+          <div
+            style="
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              width: 314px;
+              height: 57px;
+              padding-left: 11.27px;
+              padding-right: 11.27px;
+              padding-top: 5.64px;
+              padding-bottom: 5.64px;
+              background: #333333a0;
+              border-radius: 14.09px;
+              justify-content: center;
+              align-items: center;
+              gap: 7.04px;
+              display: flex;
+            "
+          >
+            <div
+              style="
+                width: 298px;
+                text-align: center;
+                justify-content: center;
+                display: flex;
+                flex-direction: column;
+                color: white;
+                font-size: 32px;
+                font-family: Roboto, sans-serif;
+                font-weight: 400;
+                word-wrap: break-word;
+              "
+            >
+              Learn about feelings
+            </div>
+          </div>
         </div>
+        </a>
       </div>
-      <a href="emolearn">
-        <div
-          style="
-            width: 251px;
-            height: 78px;
-            left: 50%;
-            top: 92%;
-            transform: translate(-50%, -50%);
-            position: absolute;
-            background: linear-gradient(
-              47deg,
-              #ff2921 0%,
-              #ff7b1e 20%,
-              #ffdc49 38%,
-              #02d20d 58%,
-              #285dff 77%,
-              #bb00ad 100%
-            );
-            border-radius: 20px;
-          "
-        ></div>
-      </a>
     </div>
+
+    <!-- Sidebar Toggle Button -->
+    <div id="sidebar-toggle">
+      <img
+        src="/static/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg"
+        alt="Menu"
+      />
+    </div>
+
     <script>
       fetch("/emotion-data")
         .then((res) => res.json())
@@ -169,7 +261,7 @@
               scales: {
                 r: {
                   startAngle: -30,
-                  max: 40,
+                  max: 20,
                   ticks: {
                     display: false,
                   },
@@ -187,6 +279,60 @@
             },
           });
         });
+
+      // Fullscreen toggle functionality
+      if (document.fullscreenEnabled || document.webkitFullscreenEnabled) {
+        const toggleBtn = document.querySelector(".js-toggle-fullscreen-btn");
+
+        const styleEl = document.createElement("link");
+        styleEl.setAttribute("rel", "stylesheet");
+        styleEl.setAttribute(
+          "href",
+          "https://codepen.io/tiggr/pen/poJoLyW.css"
+        );
+        styleEl.addEventListener("load", function () {
+          toggleBtn.hidden = false;
+        });
+        document.head.appendChild(styleEl);
+
+        toggleBtn.addEventListener("click", function () {
+          if (document.fullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitFullscreenElement) {
+            document.webkitCancelFullScreen();
+          } else if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+          } else {
+            document.documentElement.webkitRequestFullScreen();
+          }
+        });
+
+        document.addEventListener("fullscreenchange", handleFullscreen);
+        document.addEventListener("webkitfullscreenchange", handleFullscreen);
+
+        function handleFullscreen() {
+          if (document.fullscreen || document.webkitFullscreenElement) {
+            toggleBtn.classList.add("on");
+            toggleBtn.setAttribute("aria-label", "Exit fullscreen mode");
+          } else {
+            toggleBtn.classList.remove("on");
+            toggleBtn.setAttribute("aria-label", "Enter fullscreen mode");
+          }
+        }
+      }
+
+      // Sidebar toggle functionality
+      const sidebar = document.getElementById("sidebar");
+      const toggle = document.getElementById("sidebar-toggle");
+      toggle.addEventListener("click", () => {
+        sidebar.classList.toggle("sidebar-hidden");
+      });
+      // Optional: Hide sidebar when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+          sidebar.classList.add("sidebar-hidden");
+        }
+      });
     </script>
   </body>
 </html>

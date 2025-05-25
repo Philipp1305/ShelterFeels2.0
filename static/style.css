@@ -104,8 +104,8 @@ body {
 
 /* KreisGroß-Stile */
 .circle {
-  width: 240px;
-  height: 240px;
+  width: 200px;
+  height: 200px;
   padding: 7.04px;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -115,6 +115,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 7.04px;
+  z-index: 1;
 }
 
 .circle a {
@@ -131,7 +132,7 @@ body {
   width: 42.27px;
   height: 21.13px;
   padding: 5.64px 11.27px;
-  background: #343434;
+  background: #333333a0;
   border-radius: 14.09px;
   display: flex;
   justify-content: center;
@@ -174,7 +175,7 @@ body {
 
 .circlesmall-text {
   text-align: center;
-  color: #343434;
+  color: #333333a0;
   font-size: 9px;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
@@ -184,7 +185,7 @@ body {
 /* Emotion-spezifische Farben */
 .circle.sad {
   top: 375px;
-  left: 20%;
+  left: 18%;
   background: radial-gradient(
       ellipse 83.73% 83.73% at 69.09% 34.55%,
       #ff00bf 0%,
@@ -196,7 +197,7 @@ body {
 
 .circle.peaceful {
   top: 680px;
-  left: 20%;
+  left: 18%;
   background: radial-gradient(
       ellipse 83.73% 83.73% at 69.09% 34.55%,
       #6cdfff 0%,
@@ -232,7 +233,7 @@ body {
 
 .circle.scared {
   top: 375px;
-  left: 80%;
+  left: 82%;
   background: radial-gradient(
       ellipse 80.2% 80.2% at 67.73% 38.18%,
       #ffb956 0%,
@@ -244,7 +245,7 @@ body {
 
 .circle.joyful {
   top: 680px;
-  left: 80%;
+  left: 82%;
   background: radial-gradient(
       ellipse 39.55% 39.55% at 43.64% 46.59%,
       rgba(255, 248.13, 117.69, 0.49) 0%,
@@ -328,6 +329,61 @@ body {
   opacity: 0.4;
 }
 
+.toggle-fullscreen-btn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 4%;
+  left: 90%;
+  z-index: 10000;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.toggle-fullscreen-svg {
+  display: block;
+  height: auto;
+}
+
+.toggle-fullscreen-svg path {
+  transform-box: view-box;
+  transform-origin: 12px 12px;
+  fill: none;
+  stroke: hsl(0, 0%, 100%);
+  stroke-width: 4;
+  transition: 0.15s;
+}
+
+.toggle-fullscreen-btn:hover path:nth-child(1),
+.toggle-fullscreen-btn:focus path:nth-child(1) {
+  transform: translate(-2px, -2px);
+}
+
+.toggle-fullscreen-btn:hover path:nth-child(2),
+.toggle-fullscreen-btn:focus path:nth-child(2) {
+  transform: translate(2px, -2px);
+}
+
+.toggle-fullscreen-btn:hover path:nth-child(3),
+.toggle-fullscreen-btn:focus path:nth-child(3) {
+  transform: translate(2px, 2px);
+}
+
+.toggle-fullscreen-btn:hover path:nth-child(4),
+.toggle-fullscreen-btn:focus path:nth-child(4) {
+  transform: translate(-2px, 2px);
+}
+
+.toggle-fullscreen-btn:not(.on) .icon-fullscreen-leave {
+  display: none;
+}
+
+.toggle-fullscreen-btn.on .icon-fullscreen-enter {
+  display: none;
+}
+
 .buttonback {
   width: 73px;
   height: 34px;
@@ -384,4 +440,124 @@ body {
   left: 50%;
   transform: translate(-50%, -40%);
   z-index: 10;
+}
+
+#sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 1120px;
+  background-color: #333333a0;
+  color: white;
+  padding-top: 60px;
+  border-radius: 10px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  z-index: 1001;
+}
+
+#sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#sidebar ul li {
+  padding: 24px;
+  text-align: center;
+}
+#sidebar ul li a {
+  color: #e3e3e3;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-family: "Roboto", sans-serif;
+  padding: 8px 24px;
+  display: block;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+#sidebar ul li a:hover {
+  background: #444;
+}
+
+.sidebar-hidden {
+  transform: translateX(-240px);
+}
+
+#sidebar-toggle {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 40px;
+  height: 40px;
+  background: #333333a0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+#sidebar-toggle img {
+  width: 28px;
+  height: 28px;
+  filter: invert(90%);
+}
+
+@keyframes breathe {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.26);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+.anim-circle {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  animation: breathe 7s infinite;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 60%,
+    transparent 100%
+  );
+}
+
+.anim-circle.peaceful {
+  background: radial-gradient(circle, #6cdfff44 80%, transparent 100%);
+}
+
+.anim-circle.sad {
+  background: radial-gradient(circle, #ff00bf44 80%, transparent 100%);
+}
+
+.anim-circle.mad {
+  background: radial-gradient(circle, #ff6d5a44 80%, transparent 100%);
+}
+
+.anim-circle.powerful {
+  background: radial-gradient(circle, #03ff1044 80%, transparent 100%);
+}
+
+.anim-circle.scared {
+  background: radial-gradient(circle, #ffb95644 80%, transparent 100%);
+}
+
+.anim-circle.joyful {
+  background: radial-gradient(circle, #fffb0044 80%, transparent 100%);
 }
