@@ -65,7 +65,7 @@ The interface is structured into individual “slides,” each implemented as a 
 
 ### NFC
 
-mplemented in the nfc_led directory.
+Implemented in the nfc_led directory.
 
 The NFC functionality utilizes the pn532 library to read RFID chips, which return unique identifiers. Although the identifier values themselves are not meaningful, their uniqueness allows for precise emotion tagging. Each chip is associated with one of six core emotions.
 
