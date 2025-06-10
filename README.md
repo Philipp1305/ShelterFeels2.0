@@ -128,6 +128,8 @@ The actual object, ShelterFeels, is used for learning to understand your own emo
 
 ShelterFeels was created by Evelina Gudauskayte, Elisa Machmer, Philipp Schmidt, Gaith Adra and Anna Fey Winkler as part of a collaboration between Freie Universität Berlin and Kunsthochschule Berlin-Weißensee.
 
+The Thesis on ShelterFeels written by Philipp Schmidt can be found on here:
+
 ## License
 
 ShelterFeels is open source as per [GNU General Public License v3.0](LICENSE)
