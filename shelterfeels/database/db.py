@@ -46,6 +46,7 @@ def setup_to_db():
             conn.close()
 
 
+# Insert a new emotion and word into the database
 def insert_emotion(emotion, word):
     print("DB entry", emotion, word)
     try:
@@ -73,6 +74,7 @@ def insert_emotion(emotion, word):
             conn.close()
 
 
+# Fetch all emotions and words from the database
 def get_data_server():
     try:
         conn = psycopg2.connect(
@@ -104,6 +106,7 @@ def get_data_server():
             conn.close()
 
 
+# Cache all data from the database into a JSON file
 def cache_all_data():
     data = get_data_server()
     if data is not None:
@@ -114,6 +117,7 @@ def cache_all_data():
         print("No data to cache.")
 
 
+# Load cached data from the JSON file
 def load_cache():
     if os.path.exists(CACHE_FILE):
         with open(CACHE_FILE, "r", encoding="utf-8") as f:

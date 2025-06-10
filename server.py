@@ -9,8 +9,9 @@ from shelterfeels.voice_recognition_app.inference_local import extract_key_words
 from shelterfeels.voice_recognition_app.utils import save_upload_file
 
 
+# Ensure the database is set up
 app = FastAPI()
-db.cache_all_data()
+db.cache_all_data()  # Preload the cache at startup
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
@@ -60,10 +61,11 @@ async def emotion_page(request: Request, emotion: str):
             "template": "mad.html",
         },
     }
-
+    # Check if the emotion is valid
     if emotion not in emotion_map:
         return HTMLResponse(content="Emotion not found", status_code=404)
 
+    # Get the sub-emotions and template for the requested emotion
     sub_emotions = emotion_map[emotion]["sub_emotions"]
     template_name = emotion_map[emotion]["template"]
 
@@ -138,7 +140,7 @@ def extract_key_words_endpoint(file: UploadFile = File(...)):
 @app.get("/emotion-data")
 async def emotion_data():
     cached_data = db.load_cache()  # List of [emotion, word]
-
+    # filter for requested emotion
     emotion_groups = {
         "Mad": ["furious", "hurt", "hateful"],
         "Joyful": ["excited", "delightful", "stimulating"],
