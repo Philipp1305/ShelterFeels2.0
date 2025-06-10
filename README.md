@@ -3,6 +3,8 @@
 This Advanced version builds on the first version of ShelterFeels, which was created as part of a workshop at the Freie Universität Berlin and the Kunsthochschule Berlin-Weißensee. The goal of the project is to create an object that helps people understand their emotions better and document them in a playful way. As part of my bachelor thesis, I have created a webapp allowing a long term analysis of the data collected by the object.<br>
 
 Files edited due Bachelorthesis:<br>
+*shelterfeels\run.py<br>*
+*shelterfeels\server.py<br>*
 *shelterfeels\gui\main_window.py<br>*
 *shelterfeels\nfc_led\config.py<br>*
 *shelterfeels\nfc_led\nfc_led_connection.py<br>*
@@ -10,7 +12,8 @@ Files edited due Bachelorthesis:<br>
 
 Files added due Bachelorthesis:<br>
 *shelterfeels\database<br>*
-
+*shelterfeels\templates<br>*
+*shelterfeels\static<br>*
 
 # ShelterFeels
 
@@ -77,7 +80,15 @@ The config in this directory mostly pertains to the LEDs and NFCs you're using. 
 
 ### Database
 
+Found in the database directory.
+
+The database was setup for long term data access. When connecting an emotion to a word, a new entry is made to then be displayed on the webapp. The database is located on the raspberryPi and is accessed by the server.
+
 ### Webapp
+
+Found in the static and templates directory.
+
+The webapp was build to visualize long term data. All entries are shown on a seperated Emotion page and users can get an overview about their overall emotional state. Furthermore they can educate themselfs about the emotions, ShelterFeels displayes on its tokens. The webapp runs on the Uvicorn webserver and FastAPI. Jinja was used as template engine.
 
 ### Workflow
 
