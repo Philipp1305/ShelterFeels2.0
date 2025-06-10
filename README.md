@@ -90,13 +90,25 @@ Found in the static and templates directory.
 
 The webapp was build to visualize long term data. All entries are shown on a seperated Emotion page and users can get an overview about their overall emotional state. Furthermore they can educate themselfs about the emotions, ShelterFeels displayes on its tokens. The webapp runs on the Uvicorn webserver and FastAPI. Jinja was used as template engine.
 
+### Connectivity
+
+The system communicates over a VPN provided by ZeroTier.
+
+Below, you will find a simple connectivity chart to get an understanding:
+
+![connectivity chart of ShelterFeels](connectivitydiagram.png)
+
 ### Workflow
 
-`run.py` reloads the last state the LEDs were in and then builds the window. Everything afterwards is centrally controlled by a function of window called next_slide. Evry slide has its own setup and functions.
+`run.py` reloads the last state the LEDs were in and then builds the window. Everything afterwards is centrally controlled by a function of window called next_slide. Every slide has its own setup and functions.
 
-Below, you will find a state chart of how it works.
+Below, you will find a state chart of how the ShelterFeels Box works.
 
 ![state chart of ShelterFeels](shelterfeels_state_chart.png)
+
+A more detailed diagram below will show how user, ShelterFeels Box and the web application are interacting with each other:
+
+![sequencediagrammUML](sequencediagrammUML.svg)
 
 ## Installation
 
