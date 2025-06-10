@@ -1,6 +1,8 @@
 # ShelterFeels2.0
 
-This Advanced version builds on the first version of ShelterFeels, which was created as part of a workshop at the Freie Universität Berlin and the Kunsthochschule Berlin-Weißensee. The goal of the project is to create an object that helps people understand their emotions better and document them in a playful way. As part of my bachelor thesis, I have created a webapp allowing a long term analysis of the data collected by the object.<br>
+ShelterFeels 2.0 is an advanced iteration of the initial ShelterFeels project, originally developed during a collaborative workshop at the Freie Universität Berlin and the Kunsthochschule Berlin-Weißensee. The objective of this project is to design an interactive object that facilitates a deeper understanding of emotional states and encourages playful, consistent self-reflection.<br>
+
+As part of the author’s Bachelor thesis, a web application was developed to enable long-term analysis of data collected by the ShelterFeels device.<br>
 
 Files edited due Bachelorthesis:<br>
 *shelterfeels\run.py<br>*
@@ -28,10 +30,10 @@ Files added due Bachelorthesis:<br>
 
 ## Description
 
-The code here pertains to a specific object that can perform voice recognition and NFC tag reading. It has a simple gui user interface and, as feedback, controls neopixel LEDs.
+Description
+This repository contains the software for an interactive object equipped with voice recognition and NFC tag reading functionalities + a database setup for visualizing the data on a web application. It features a graphical user interface and provides visual feedback using NeoPixel LEDs.
 
-In emotriowheel you will find basic first attempts involving an Arduino.
-The shelterfeels directory contains the actual meat of project.
+The directory emotriowheel contains early Arduino-based prototypes. The core functionality of the project is located within the shelterfeels directory.
 
 ### Hardware
 
@@ -45,90 +47,95 @@ The shelterfeels directory contains the actual meat of project.
 
 #### Recognition app
 
-Found in the voice_recognition_app directory.
+Located in the voice_recognition_app directory.
 
-You should have FFMPEG installed on your PC to work with audio files. https://ffmpeg.org/download.html
-We can use text summarization (creates longer texts) or keywords extraction which is more fitting.
-If your mic has more than 2 channels, audio is written only from first two. If you gave mono mic, channels are duplicated.
+For audio processing, FFMPEG must be installed. Installation and setup instructions can be found at: https://ffmpeg.org/download.html. The application offers two processing modes: text summarization and keyword extraction, with the latter being more appropriate for the project’s scope.
 
-There's an option to do the processing on a server with inference_remote. If you're using a Raspberry Pi, this is recommended, as processing can take a long time.
+Note: If the microphone has more than two channels, only the first two will be processed. In the case of mono microphones, channels are duplicated.
 
-In the config of the voice_recognition_app directory, you can change the url of the remote target to process the content. You may also user different AI models or languages. Chances are you also need to specify some things about your audio device.
+To improve performance, particularly when deployed on a Raspberry Pi, remote processing via a designated server (inference_remote) is available. The remote server URL and additional configuration parameters, including audio device specifications and model settings, can be defined within the configuration files.
 
 #### GUI
 
-Found in the gui directory.
+Contained within the gui directory.
 
-Tkinter needs to be installed extra with something like `sudo apt-get install python3-tk`.
-The GUI is conceptualized as an object that shows different slide. Each slide gets its own bit of code.
+The GUI is built using Tkinter, which must be installed separately using: `sudo apt-get install python3-tk`
 
-In style.py in the gui directory you can switch around some styling options, such as window size,background color and font.
+The interface is structured into individual “slides,” each implemented as a separate object with its own setup and logic. Styling configurations such as window size, background color, and fonts can be adjusted in style.py.
 
 ### NFC
 
-Found in the nfc_led directory.
+mplemented in the nfc_led directory.
 
-We use the library pn532 to read out NFCs. They return a unique list of numbers. The numbers themselves are unimportant, but the fact they are unique lets know which NFC chip was read. As part of ShelterFeels, we used a set of chips and gave each one meaning, associating it with one of 6 core emotions. So reading a chip gives one of 6 emotions as a return value.
+The NFC functionality utilizes the pn532 library to read RFID chips, which return unique identifiers. Although the identifier values themselves are not meaningful, their uniqueness allows for precise emotion tagging. Each chip is associated with one of six core emotions.
 
-#### LED
+#### LED Feedback
 
-Found in the nfc_led directory.
+Also located in the nfc_led directory.
 
-The LEDs are categorized by our 6 core emotion, each of which gets assigned an RGB color. For ShelterFeels we used 7 rings of neopixel LEDs and every day of the week was assigned one ring. The code looks up the current date and updates the rings life. Multiple calls will dynamically divide a ring into sections, so if you make the first call, the ring might be all red; a second all can turn the ring half red and half blue, a third call might result in a ring of 1 third red, 1 third blue and 1 third green and so on.
+Each core emotion is linked to a specific RGB color. The device uses seven rings of NeoPixel LEDs, one for each day of the week. The system dynamically updates the LED rings based on user input: with each new input, the corresponding LED ring is divided into segments representing recorded emotions throughout the day.
 
-The config in this directory mostly pertains to the LEDs and NFCs you're using. The NFC chips have unique IDs which need to be assigned an emotion. The LEDs can have different adresses or a variable amount, also specified in the config. The code assumes that all LEDs are chaned together.
+The configuration file in this directory allows adjustments to LED address settings, chip-to-emotion mappings, and other hardware-specific parameters.
 
 ### Database
 
-Found in the database directory.
+Located in the database directory.
 
-The database was setup for long term data access. When connecting an emotion to a word, a new entry is made to then be displayed on the webapp. The database is located on the raspberryPi and is accessed by the server.
+The database supports long-term data storage and retrieval. Each time a user links an emotion to a keyword, a new record is created for later visualization via the web application. The database resides on the Raspberry Pi and is accessed by the backend server.
 
 ### Webapp
 
-Found in the static and templates directory.
+Files related to the web interface are stored in the templates and static directories.
 
-The webapp was build to visualize long term data. All entries are shown on a seperated Emotion page and users can get an overview about their overall emotional state. Furthermore they can educate themselfs about the emotions, ShelterFeels displayes on its tokens. The webapp runs on the Uvicorn webserver and FastAPI. Jinja was used as template engine.
+The web application is designed to visualize the data collected by the ShelterFeels device. It provides a detailed view of emotional entries on a dedicated Emotion Page, offering users insights into their overall emotional patterns. Additionally, it serves as an educational tool, offering explanations of the six core emotions used by ShelterFeels.
+
+The application is built with FastAPI and Jinja templating, and is served via Uvicorn.
 
 ### Connectivity
 
-The system communicates over a VPN provided by ZeroTier.
+The system uses a VPN connection provided by ZeroTier to ensure secure and stable communication between components.
 
-Below, you will find a simple connectivity chart to get an understanding:
+Below is an overview of the system's connectivity:
 
 ![connectivity chart of ShelterFeels](connectivitydiagram.png)
 
 ### Workflow
 
-`run.py` reloads the last state the LEDs were in and then builds the window. Everything afterwards is centrally controlled by a function of window called next_slide. Every slide has its own setup and functions.
+The run.py script initializes the LED states from the last session and launches the graphical interface. The application's progression is controlled by the next_slide function of the main window object. Each slide operates with its own initialization and functionality routines.
 
-Below, you will find a state chart of how the ShelterFeels Box works.
+A state diagram illustrating the operational flow of the ShelterFeels system is shown below:
 
 ![state chart of ShelterFeels](shelterfeels_state_chart.png)
 
-A more detailed diagram below will show how user, ShelterFeels Box and the web application are interacting with each other:
+A detailed UML sequence diagram illustrates the interaction between the user, the ShelterFeels device, and the web application:
 
 ![sequencediagrammUML](sequencediagrammUML.svg)
 
 ## Installation
 
-Installation will be difficult, because the code is closely connected to the physical object we build. That said, if you're willing to overcome a lot of hardware problems, we advice you to read and understand the code thoroughly before doing anything with it.
+Due to the project's tight coupling with specific hardware components, installation may present challenges. It is strongly recommended to thoroughly review and understand the code before attempting to set up the system.
 
-You need **python3.10** and the requirements listed in requirements.txt (which is yet incomplete). Doing `pip install -r requirments.txt` will get you there some of the way, but you are likely going to need some extra work to get some packages working.
+Requirements include Python 3.10 and additional packages listed in the requirements.txt file. Begin installation using the command:
 
-To run, simply execute run.py with python as sudo: `sudo python run.py`
+`pip install -r requirments.txt` 
+
+Additional manual steps may be necessary to resolve dependencies for certain packages.
+
+To launch the application, execute:
+
+`sudo python run.py`
 
 ## Usage
 
-As of right now, you can repurpose the code for your own means. By inserting dummy functions for the subprocesses in main_window you can at least the gui on any PC.
+While fully functional use requires the physical ShelterFeels device, the codebase can be repurposed or tested in limited form on standard computing systems. By implementing placeholder functions for hardware-dependent processes in main_window.py, the GUI can be run independently for development or testing purposes.
 
-The actual object, ShelterFeels, is used for learning to understand your own emotions better, by daily telling ot about your day and finding the best words to describe how you feel about it.
+The ShelterFeels device is intended to support users in developing a deeper understanding of their emotions through daily reflection and expression.
 
 ## Acknowledgements
 
-ShelterFeels was created by Evelina Gudauskayte, Elisa Machmer, Philipp Schmidt, Gaith Adra and Anna Fey Winkler as part of a collaboration between Freie Universität Berlin and Kunsthochschule Berlin-Weißensee.
+ShelterFeels was developed by Evelina Gudauskayte, Elisa Machmer, Philipp Schmidt, Gaith Adra, and Anna Fey Winkler as part of a collaborative initiative between the Freie Universität Berlin and Kunsthochschule Berlin-Weißensee.
 
-The Thesis on ShelterFeels written by Philipp Schmidt can be found on here:
+The Bachelor thesis on ShelterFeels authored by Philipp Schmidt can be accessed at:
 
 ## License
 
