@@ -30,7 +30,6 @@ Files added due Bachelorthesis:<br>
 
 ## Description
 
-Description
 This repository contains the software for an interactive object equipped with voice recognition and NFC tag reading functionalities + a database setup for visualizing the data on a web application. It features a graphical user interface and provides visual feedback using NeoPixel LEDs.
 
 The directory emotriowheel contains early Arduino-based prototypes. The core functionality of the project is located within the shelterfeels directory.
@@ -127,9 +126,17 @@ To launch the application, execute:
 
 ## Usage
 
-While fully functional use requires the physical ShelterFeels device, the codebase can be repurposed or tested in limited form on standard computing systems. By implementing placeholder functions for hardware-dependent processes in main_window.py, the GUI can be run independently for development or testing purposes.
+ShelterFeels is a tangible object designed to help individuals understand, reflect on, and communicate their emotions through physical interaction. It functions as a personal daily ritual, often used at the end of the day for self-reflection in a quiet, familiar space.
+The interaction with ShelterFeels involves three main phases:
+1. Voice Recording: Begin by interacting with the physical box. The device will prompt you with a question like "How has your day been?". You then speak to the object, describing the events of your day and situations where you felt emotionally engaged.
+2. Emotion Tagging: After recording, the system presents spoken words extracted from your voice input. To process these, you use NFC emotion tokens, which represent various feelings based on Gloria Willcox's Feeling Wheel (e.g., joyful, sad, mad, scared, powerful, peaceful, and more nuanced emotions). You associate a token with a displayed word by placing it on the NFC reader of the box.
+3. Immediate Visualization: Once tagged, the seven LED rings on the lid of the box light up in colors matching the emotions you assigned for each day, providing a visual overview of your emotional state over the past week.
 
-The ShelterFeels device is intended to support users in developing a deeper understanding of their emotions through daily reflection and expression.
+For long-term reflection and deeper insights, ShelterFeels is complemented by a web application:
+* Data Visualization: The web application allows you to visualize your collected emotional data over time, offering a broader perspective beyond the daily LED feedback. The main interface displays emotion circles and a polar area chart showing the distribution of emotions, while detailed pages show all tagged words for each core emotion.
+* Emotional Vocabulary Learning: It also provides a dedicated section to learn about emotional vocabulary, explaining the feelings represented by the tokens and helping you expand your understanding of emotions.
+The system securely stores your voice recordings and tagged emotions on a Raspberry Pi, and the web interface is hosted on a server, with ZeroTier ensuring secure communication between the devices.
+
 
 ## Acknowledgements
 
