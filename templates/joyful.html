@@ -54,6 +54,39 @@
         </a>
       </div>
 
+      <div
+        style="
+          position: absolute;
+          left: 50%;
+          top: 90%;
+          transform: translate(-50%, -50%);
+        "
+      >
+        <div
+          style="
+            width: 600px;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          "
+        >
+          <span
+            style="
+              color: white;
+              font-size: 16px;
+              font-family: Roboto, sans-serif;
+              font-weight: 400;
+              word-wrap: break-word;
+            "
+            >Page Description:<br />This page displays all the emotions you've
+            linked to the primary emotion Joyful.<br />
+            Each small circle represents a word you’ve tagged with an
+            emotion.</span
+          >
+        </div>
+      </div>
+
       {% for item in circles %}
       <div
         class="circlesmall joyful{% if not item.word or item.word == '---' %} empty{% endif %}"
